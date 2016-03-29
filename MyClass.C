@@ -5,6 +5,34 @@
 #include <TCanvas.h>
 #include <TMath.h>
 
+//Create struct
+   struct evaluatejet {
+     int number;
+     float phip;
+     float etap;
+     float ptp;
+     float massp; 
+   }particles; 
+
+//Add lists
+    list<evaluatejet>jet;
+
+//variables being used
+   float phii,phij,etai,etaj,pti,ptj,massi,massj;
+   Double_t R,dij,diB,djB,mind, combp, combpt, thetai, thetaj;
+   Double_t combeta,combtheta,combpx,combpy,combpz,ppi,ppj;
+
+//Creating the structure with starting set of particles from the original vector 
+
+   for (Long64_t k=0;k<nentries;k++) {
+     jet[k].number = k;
+     jet[k].phip = phi->GetEntry(k);
+     jet[k].etap = eta->GetEntry(k);
+     jet[k].ptp = pt->GetEntry(k);
+     jet[k].massp = mass->GetEntry(k);
+   }
+
+
 void MyClass::Loop()
 {
 //   In a ROOT session, you can do:
@@ -41,40 +69,18 @@ void MyClass::Loop()
       nb = fChain->GetEntry(jentry);   nbytes += nb;
       // if (Cut(ientry) < 0) continue;
 
-   struct evaluatejet {
-     int number;
-     float phip;
-     float etap;
-     float ptp;
-     float massp; 
-   } jet[nentries];
-
-   float phii,phij,etai,etaj,pti,ptj,massi,massj;
-   Double_t R,dij,diB,djB,mind, combp, combpt, thetai, thetaj;
-   Double_t combeta,combtheta,combpx,combpy,combpz,ppi,ppj;
-
    TBranch *jetp = tree->Branch("pt",&pt,"pt/F");
-   tree->SetBranchAddress("jetptp",&pt);
-   tree->SetBranchAddress("jetetap",&eta);
-   tree->SetBranchAddress("jetphip",&eta);
-   tree->SetBranchAddress("jetmassp",&eta);
+   //tree->SetBranchAddress("jetptp",&pt);
+   //tree->SetBranchAddress("jetetap",&eta);
+   //tree->SetBranchAddress("jetphip",&eta);
+   //tree->SetBranchAddress("jetmassp",&eta);
    TH1F *jetphip = new TH1F("jetphip","phi",-4,0.,4);
    TH1F *jeteta = new TH1F("jeteta","eta", -4,0.,4);
    TH1F *jetptp = new TH1F("jetptp","pt",0,0.,500);
    TH1F *jetp = new TH1F("jetp","p",0,0,500);
    TH1F *jetmassp = new TH1F("jetmassp","mass",0,0.,500);
 
-   //Need new tree so that values can be deleted/altered and clone the data into these friends
-
-   //Creating the structure with starting set of particles from the 
-
-   for (Long64_t k=0;k<nentries;k++) {
-     jet[k].number = k;
-     jet[k].phip = phi->GetEntry(k);
-     jet[k].etap = eta->GetEntry(k);
-     jet[k].ptp = pt->GetEntry(k);
-     jet[k].massp = mass->GetEntry(k);
-   }
+   //Need new tree so that values can be deleted/altered and clone the data into these friends??
 
    int stoploop =nentries;
    //   while (jetempty==false){//only evaluate whe our original strcut is nonempy??
