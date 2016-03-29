@@ -4,6 +4,19 @@
 #include <TStyle.h>
 #include <TCanvas.h>
 #include <TMath.h>
+#include <math.h>
+#include <string>
+#include <strstream>
+#include <iostream>
+#include "TFile.h"
+#include "TTree.h"
+#include <fstream>
+#include <list>
+#include <map>
+#include <vector>
+#include <iterator>
+
+using namespace std;
 
 //Create struct
    struct evaluatejet {
@@ -23,7 +36,6 @@
    Double_t combeta,combtheta,combpx,combpy,combpz,ppi,ppj;
 
 //Creating the structure with starting set of particles from the original vector 
-
    for (Long64_t k=0;k<nentries;k++) {
      jet[k].number = k;
      jet[k].phip = phi->GetEntry(k);
@@ -31,6 +43,7 @@
      jet[k].ptp = pt->GetEntry(k);
      jet[k].massp = mass->GetEntry(k);
    }
+
 
 
 void MyClass::Loop()
@@ -111,18 +124,8 @@ void MyClass::Loop()
              jetetap->Fill(jet[i].etap);
 	     jetmassp->Fill(jet[i].massp);
 
-     	     //Get rid of particle from struct
-             for (Long64_t k=i;k<stoploop;k++){
-               jet[k].phip=jet[k+1].phip;
-               jet[k].etap=jet[k+1].etap;
-               jet[k].ptp=jet[k+1].ptp;
-	       jet[k].massp=jet[k+1].massp;
-             }
-             stoploop = stoploop-1;
-             //jet[i].phip=[];
-	     //jet[i].etap=[];
-	     //jet[i].ptp=[];
-	     //Change i?
+     	     //Get rid of particle from list
+             
      }
 
       //if the min is j with beam
@@ -166,28 +169,12 @@ void MyClass::Loop()
 	    jet[i].etap=combeta;
 	    jet[i].phip=TMath::ASin(combpx/combpt);
 
-	    //shift everything down from the emptied jth spot
-	 for (Long64_t k=j;k<stoploop;k++){
-		jet[k].phip=jet[k+1].phip;
-		jet[k].etap=jet[k+1].etap;
-		jet[k].ptp=jet[k+1].ptp;
-		jet[k].massp=jet[k+1].massp;
-	      }
-	      stoploop = stoploop-1;
-	    }
-	      //jet[i].phip=[];
-	      //jet[j].phip=[];
-	      //jet[i].ptp=[];
-	      //jet[j].ptp=[];
-	      //jet[i].etap=[];
-	      //jet[j].etap=[];
-	    //add a new combined particle in the ith spot to be evaluated with the other particles 
-   
-	
+	 
 	  }//for j 
 
 }//fori
-//}//while
+
 //create histograms
+
 }//fornbytes 
 }//void
