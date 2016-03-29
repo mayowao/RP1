@@ -28,21 +28,13 @@ using namespace std;
    }particles; 
 
 //Add lists
-    list<evaluatejet>jet;
+    list<evaluatejet> jet;
+    
 
 //variables being used
    float phii,phij,etai,etaj,pti,ptj,massi,massj;
    Double_t R,dij,diB,djB,mind, combp, combpt, thetai, thetaj;
    Double_t combeta,combtheta,combpx,combpy,combpz,ppi,ppj;
-
-//Creating the structure with starting set of particles from the original vector 
-   for (Long64_t k=0;k<nentries;k++) {
-     jet[k].number = k;
-     jet[k].phip = phi->GetEntry(k);
-     jet[k].etap = eta->GetEntry(k);
-     jet[k].ptp = pt->GetEntry(k);
-     jet[k].massp = mass->GetEntry(k);
-   }
 
 
 
@@ -94,6 +86,18 @@ void MyClass::Loop()
    TH1F *jetmassp = new TH1F("jetmassp","mass",0,0.,500);
 
    //Need new tree so that values can be deleted/altered and clone the data into these friends??
+
+//Creating the list of the starting set of particles from the original vector 
+int numentries = pt->size();
+
+   for (Long64_t k=0;k<numentries;k++) {
+     jet[k].number = k;
+     jet[k].phip = phi->GetEntry(k);
+     jet[k].etap = eta->GetEntry(k);
+     jet[k].ptp = pt->GetEntry(k);
+     jet[k].massp = mass->GetEntry(k);
+   }
+
 
    int stoploop =nentries;
    //   while (jetempty==false){//only evaluate whe our original strcut is nonempy??
