@@ -119,12 +119,12 @@ int numentries = pt->size();
 	     massj=jet[j].massp;
 
 	     R=sqrt(pow((phii-phij),2)+pow((etai-etaj),2));
-/*	    
-	     dij=TMath::(R^2)*min(pti^(-2),ptj^(-2));
-	     diB=TMath::(pti)^(-2);
-	     djB=TMath::(ptj)^(-2);
-             mind=TMath::Min(dij,diB,djB);
-
+	    
+	     dij=(pow(R,2))*min(pow(pti,-2),pow(ptj,-2));
+	     diB=pow(pti,-2);
+	     djB=pow(ptj,-2);
+             mind=min(dij,diB,djB);
+/*
              //if the min is i with beam:
 	     if  (mind==diB){
 	        jetp->Fill(i));
@@ -153,12 +153,12 @@ int numentries = pt->size();
       //if the min is distance between particles
 	     if  (mind==dij){   //ERROR: from TMath, and Double_t(line 163) sol'n need c++ math???
 	    //make the ith particle the combined particle
-	       thetai=TMath::2*(ATan(E(-etai)));   //ERROR: expected unqualified id before num constnt, expected ;??
-	       thetaj=TMath::2*(ATan(E(-etaj)));
-	       ppi=TMath::pti/Sin(thetai);   //ERROR : pti not a member of TMath
-	       ppj=TMath::ptj/Sin(thetaj);
-	       combp=TMath::Sqrt((pti*Cos(phii)+ptj*Cos(phij))^2+(pti*Sin(phii)+ptj*Sin(phij))^2+(ppi*Cos(thetai)+ppj*Cos(thetaj))^2);
-	       combpx=TMath::ppi*Sin(thetai)*Cos(phii)+ptj*Sin(thetaj)*Cos(phij);
+	       thetai=2*(atan(exp(-etai)));   //ERROR: expected unqualified id before num constnt, expected ;??
+	       thetaj=2*(atan(exp(-etaj)));
+	       ppi=pti/sin(thetai);   //ERROR : pti not a member of TMath
+	       ppj=ptj/sin(thetaj);
+	       combp=sqrt((pti*cos(phii)+ptj*cos(phij))^2+(pti*sin(phii)+ptj*sin(phij))^2+(ppi*cos(thetai)+ppj*cos(thetaj))^2);
+	       combpx=ppi*sin(thetai)*cos(phii)+ptj*sin(thetaj)*cos(phij);
 	       combpy=TMath::ppi*Sin(thetai)*Cos(phii)+ptj*Sin(thetaj)*Sin(phij);
 
 	       combpt=TMath::Sqrt(combpx^2+combpy^2);
