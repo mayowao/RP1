@@ -16,7 +16,7 @@
 #include <vector>
 #include <iterator>
 
-using std::vector
+using std::vector;
 
 //Create struct
    struct evaluatejet {
