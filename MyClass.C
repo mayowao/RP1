@@ -74,7 +74,7 @@ void MyClass::Loop()
       nb = fChain->GetEntry(jentry);   nbytes += nb;
       // if (Cut(ientry) < 0) continue;
 
-   TBranch *jetp = tree->Branch("pt",&pt,"pt/F");
+   //TBranch *jetp = tree->Branch("pt",&pt,"pt/F");   //tree not declared in this scope
    //tree->SetBranchAddress("jetptp",&pt);
    //tree->SetBranchAddress("jetetap",&eta);
    //tree->SetBranchAddress("jetphip",&eta);
@@ -85,26 +85,27 @@ void MyClass::Loop()
    TH1F *jetp = new TH1F("jetp","p",0,0,500);
    TH1F *jetmassp = new TH1F("jetmassp","mass",0,0.,500);
 
-   //Need new tree so that values can be deleted/altered and clone the data into these friends??
+   //IDEA?:Need new tree so that values can be deleted/altered and clone the data into these friends??
 
 //Creating the list of the starting set of particles from the original vector 
 int numentries = pt->size();
 
-   for (Long64_t k=0;k<numentries;k++) {
-     jet[k].number = k;
-     jet[k].phip = phi->GetEntry(k);
-     jet[k].etap = eta->GetEntry(k);
-     jet[k].ptp = pt->GetEntry(k);
-     jet[k].massp = mass->GetEntry(k);
+   for (Long64_t k=0;k<numentries;k++) {   //ERROR: no match for operator jet[k]... list format?
+     particle.number = k;
+     particle.phip = (*phi)[k];   //ERROR: vector<float> has no memeber named GetEntry, sol'n from james notation (*pt)
+     particle.etap = (*eta)[k];
+     particle.ptp = (*pt)[k];
+     particle.massp = (*mass)[k];
+     jet.push_back(particle);
    }
 
 
-   int stoploop =numentries
+   int stoploop =numentries;
    
-   while (!jet.empty()){//only evaluate while our list is nonempy??
+   while (!jet.empty()){//only evaluate while our list is nonempy??  
    for (Long64_t i=0;i<stoploop;i++){
      for (Long64_t j=i+1; j<stoploop;j++){//start j=i accounts for all particles??
-             phii= jet[i].phip;
+             phii= jet[i].phip;   //ERROR: need to change to iterators??
 	     phij= jet[j].phip;
 	     etai= jet[i].etap;
 	     etaj= jet[j].etap;
