@@ -134,7 +134,7 @@ int numentries = pt->size();
      	     //Get rid of particle from list
                 jet.erase(jet.begin()+i); 
              }
-/*
+
       //if the min is j with beam
              if  (mind==djB){
 	        jetp->Fill(j);
@@ -147,7 +147,7 @@ int numentries = pt->size();
 	        jet.erase(jet.begin()+i);
     	    
              }
-
+/*
       //if the min is distance between particles
 	     if  (mind==dij){   //ERROR: from TMath, and Double_t(line 163) sol'n need c++ math???
 	    //make the ith particle the combined particle
@@ -155,7 +155,7 @@ int numentries = pt->size();
 	       thetaj=2*(atan(exp(-etaj)));
 	       ppi=pti/sin(thetai);   //ERROR : pti not a member of TMath
 	       ppj=ptj/sin(thetaj);
-	       combp=sqrt(pow((pti*cos(phii)+ptj*cos(phij)),2)+pow((pti*sin(phii)+ptj*sin(phij)),2)+pow((ppi*cos(thetai)+ppj*cos(thetaj)),2));
+	       combp=sqrt(pow((pti*cos(phii)+ptj*cos(phij)),2)+pow((pti*sin(phii)+ptj*sin(phij)),2)+pow((ppi*cos(thetai)+ppj*cos(thetaj)),2))*(dij/R);
 	       combpx=ppi*sin(thetai)*cos(phii)+ptj*sin(thetaj)*cos(phij);
 	       combpy=ppi*sin(thetai)*cos(phii)+ptj*sin(thetaj)*sin(phij);
 
