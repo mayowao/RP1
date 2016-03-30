@@ -15,6 +15,8 @@
 #include <map>
 #include <vector>
 #include <iterator>
+#include <stdio.h>      /* printf */
+#include <math.h>
 
 using std::vector;
 
@@ -116,7 +118,7 @@ int numentries = pt->size();
 	     massi=jet[i].massp;
 	     massj=jet[j].massp;
 
-	     R=TMath::Sqrt((phii-phij)^2+(etai-etaj)^2);
+	     R=sqrt((phii-phij)^2+(etai-etaj)^2);
 	    /*
 	     dij=TMath::(R^2)*min(pti^(-2),ptj^(-2));
 	     diB=TMath::(pti)^(-2);
