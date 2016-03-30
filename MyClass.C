@@ -124,7 +124,7 @@ int numentries = pt->size();
 	     diB=pow(pti,-2);
 	     djB=pow(ptj,-2);
              mind=min(min(dij,diB),djB);
-/*
+
              //if the min is i with beam:
 	     if  (mind==diB){
 	        jetp->Fill(i));
@@ -134,7 +134,7 @@ int numentries = pt->size();
 	        jetmassp->Fill(jet[i].massp);
  
      	     //Get rid of particle from list
-                jet.erase(i); 
+                jet.erase(jet.begin()+i); 
              }
 
       //if the min is j with beam
@@ -146,7 +146,7 @@ int numentries = pt->size();
 	        jetmassp->Fill(jet[j].massp);    
 
               //Get rid of particle from list
-	        jet.erase(i);
+	        jet.erase(jet.begin()+i);
     	    
              }
 
@@ -157,22 +157,22 @@ int numentries = pt->size();
 	       thetaj=2*(atan(exp(-etaj)));
 	       ppi=pti/sin(thetai);   //ERROR : pti not a member of TMath
 	       ppj=ptj/sin(thetaj);
-	       combp=sqrt((pti*cos(phii)+ptj*cos(phij))^2+(pti*sin(phii)+ptj*sin(phij))^2+(ppi*cos(thetai)+ppj*cos(thetaj))^2);
+	       combp=sqrt(pow((pti*cos(phii)+ptj*cos(phij)),2)+pow((pti*sin(phii)+ptj*sin(phij)),2)+pow((ppi*cos(thetai)+ppj*cos(thetaj)),2));
 	       combpx=ppi*sin(thetai)*cos(phii)+ptj*sin(thetaj)*cos(phij);
-	       combpy=TMath::ppi*Sin(thetai)*Cos(phii)+ptj*Sin(thetaj)*Sin(phij);
+	       combpy=ppi*sin(thetai)*cos(phii)+ptj*sin(thetaj)*sin(phij);
 
-	       combpt=TMath::Sqrt(combpx^2+combpy^2);
-	       combtheta=TMath::ASin(combpt/combp);
-	       combeta=TMath::-LogE(Tan(combtheta/2);
+	       combpt=sqrt(pow(combpx,2)+pow(combpy,2));
+	       combtheta=asin(combpt/combp);
+	       combeta=-log(tan(combtheta/2));
 	       jet[i].ptp=combpt;
-	       jet[i].massp=TMath::massi+massj;
+	       jet[i].massp=massi+massj;
 	       jet[i].etap=combeta;
-	       jet[i].phip=TMath::ASin(combpx/combpt);
+	       jet[i].phip=asin(combpx/combpt);
 
 	 //delete the jth particle
-	       jet.erase(j);
+	       jet.erase(jet.begin()+j);
 	     }
-	     */
+/*	     */
 	     //std::cout<<"Hello";
 	  }//for j 
        }//fori
