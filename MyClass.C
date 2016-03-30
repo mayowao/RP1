@@ -174,6 +174,9 @@ int numentries = pt->size();
 }//fori
 }//for while
 //create histograms
-
+jetp->Draw();
+jetphip->Draw();
+jetetap->Draw();
+jetmassp->Draw();
 }//fornbytes 
 }//void
