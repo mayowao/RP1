@@ -97,7 +97,7 @@ int numentries = pt->size();
      particle.ptp = (*pt)[k];
      particle.massp = (*mass)[k];
      jet.push_back(particle);
-     std::cout<<"We added"<<jet(k)<<;
+     std::cout<<"We added"<<jet(k);
    }
    
 /*
