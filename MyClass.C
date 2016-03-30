@@ -99,7 +99,7 @@ int numentries = pt->size();
      particle.ptp = (*pt)[k];
      particle.massp = (*mass)[k];
      jet.push_back(particle);
-     //std::cout<<"We added"<<jet(k);
+     std::cout<<"We added"<<jet[k].phip;
    }
    
 
@@ -117,9 +117,9 @@ int numentries = pt->size();
 	     ptj= jet[j].ptp;
 	     massi=jet[i].massp;
 	     massj=jet[j].massp;
-
+/*
 	     R=sqrt((phii-phij)^2+(etai-etaj)^2);
-	    /*
+	    
 	     dij=TMath::(R^2)*min(pti^(-2),ptj^(-2));
 	     diB=TMath::(pti)^(-2);
 	     djB=TMath::(ptj)^(-2);
