@@ -16,7 +16,7 @@
 #include <vector>
 #include <iterator>
 
-using namespace std;
+using std::list;
 
 //Create struct
    struct evaluatejet {
@@ -73,13 +73,14 @@ void MyClass::Loop()
 
    Long64_t nentries = fChain->GetEntriesFast();
 
+//Loops through the EVENTS. And we want to find number of jets of a certain type in each event
    Long64_t nbytes = 0, nb = 0;
    for (Long64_t jentry=0; jentry<nentries;jentry++) {
       Long64_t ientry = LoadTree(jentry);
       if (ientry < 0) break;
       nb = fChain->GetEntry(jentry);   nbytes += nb;
       // if (Cut(ientry) < 0) continue;
-
+/*
    //TBranch *jetp = tree->Branch("pt",&pt,"pt/F");   //tree not declared in this scope
    //tree->SetBranchAddress("jetptp",&pt);
    //tree->SetBranchAddress("jetetap",&eta);
@@ -178,5 +179,7 @@ jetp->Draw();
 jetphip->Draw();
 jetetap->Draw();
 jetmassp->Draw();
+*/
 }//fornbytes 
 }//void
+}
