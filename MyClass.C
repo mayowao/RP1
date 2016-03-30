@@ -124,7 +124,7 @@ int numentries = pt->size();
 	     diB=pow(pti,-2);
 	     djB=pow(ptj,-2);
              mind=min(min(dij,diB),djB);
-
+/*
              //if the min is i with beam:
 	     if  (mind==diB){
 	        jetp->Fill(i));
@@ -172,7 +172,7 @@ int numentries = pt->size();
 	 //delete the jth particle
 	       jet.erase(jet.begin()+j);
 	     }
-/*	     */
+	     */
 	     //std::cout<<"Hello";
 	  }//for j 
        }//fori
