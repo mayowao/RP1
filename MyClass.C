@@ -68,11 +68,11 @@ void MyClass::Loop()
 //by  b_branchname->GetEntry(ientry); //read only this branch
    if (fChain == 0) return;
 
-   TH1F *jetphip = new TH1F("jetphip","phi",-4,0.,4);
-   TH1F *jetetap = new TH1F("jeteta","eta", -4,0.,4);
-   TH1F *jetptp = new TH1F("jetptp","pt",0,0.,500);
+   TH1F *jetphip = new TH1F("jetphip","phip",-4,0.,4);
+   TH1F *jetetap = new TH1F("jeteta","etap", -4,0.,4);
+   TH1F *jetptp = new TH1F("jetptp","ptp",0,0.,500);
    TH1F *jetp = new TH1F("jetp","p",0,0,500);
-   TH1F *jetmassp = new TH1F("jetmassp","mass",0,0.,500);
+   TH1F *jetmassp = new TH1F("jetmassp","massp",0,0.,500);
 
    Long64_t nentries = fChain->GetEntriesFast();
 
