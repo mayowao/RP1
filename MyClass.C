@@ -27,7 +27,7 @@ using std::vector;
      float massp; 
    };
    
-   evaluatejet particles; 
+   evaluatejet particle; 
 
 //Add lists
     vector<evaluatejet> jet;
