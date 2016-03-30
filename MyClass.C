@@ -123,7 +123,7 @@ int numentries = pt->size();
 	     dij=(pow(R,2))*min(pow(pti,-2),pow(ptj,-2));
 	     diB=pow(pti,-2);
 	     djB=pow(ptj,-2);
-             mind=min(dij,diB,djB);
+             mind=min(min(dij,diB),djB);
 /*
              //if the min is i with beam:
 	     if  (mind==diB){
