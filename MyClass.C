@@ -30,7 +30,7 @@ using std::vector;
    evaluatejet particle; 
 
 //Add lists
-    vector<evaluatejet> jet;
+    vector<evaluatejet> jet; //jet is a vector of structs
     
 
 //variables being used
@@ -90,13 +90,14 @@ void MyClass::Loop()
 //Creating the list of the starting set of particles from the original vector 
 int numentries = pt->size();
 
-   for (Long64_t k=0;k<numentries;k++) {   //ERROR: no match for operator jet[k]... list format?
+   for (Long64_t k=0;k<numentries;k++) {   
      particle.number = k;
-     particle.phip = (*phi)[k];   //ERROR: vector<float> has no memeber named GetEntry, sol'n from james notation (*pt)
+     particle.phip = (*phi)[k];   
      particle.etap = (*eta)[k];
      particle.ptp = (*pt)[k];
      particle.massp = (*mass)[k];
      jet.push_back(particle);
+     std::cout<<"We added"<<jet.number<<;
    }
    
 /*
