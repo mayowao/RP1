@@ -99,8 +99,9 @@ int numentries = pt->size();
    }
 
 
-   int stoploop =nentries;
-   //   while (jetempty==false){//only evaluate whe our original strcut is nonempy??
+   int stoploop =numentries
+   
+   while (!jet.empty()){//only evaluate while our list is nonempy??
    for (Long64_t i=0;i<stoploop;i++){
      for (Long64_t j=i+1; j<stoploop;j++){//start j=i accounts for all particles??
              phii= jet[i].phip;
@@ -114,7 +115,6 @@ int numentries = pt->size();
 
 	     R=TMath::Sqrt((phii-phij)^2+(etai-etaj)^2);
 	    
-
 	     dij=TMath::(R^2)*min(pti^(-2),ptj^(-2));
 	     diB=TMath::(pti)^(-2);
 	     djB=TMath::(ptj)^(-2);
@@ -129,7 +129,7 @@ int numentries = pt->size();
 	     jetmassp->Fill(jet[i].massp);
 
      	     //Get rid of particle from list
-             
+            jet.erase(i); 
      }
 
       //if the min is j with beam
@@ -140,14 +140,8 @@ int numentries = pt->size();
              jetetap->Fill(jet[j].etap);
 	     jetmassp->Fill(jet[j].massp);    
 
-              //Get rid of particle from struct
-	     for (Long64_t k=j;k<stoploop;k++){
-	       jet[k].phip=jet[k+1].phip;
-	       jet[k].etap=jet[k+1].etap;
-	       jet[k].ptp=jet[k+1].ptp;
-	       jet[k].massp=jet[k+1].massp;
-	     }
-	     stoploop = stoploop-1;
+              //Get rid of particle from list
+	     jet.erase(i);
    
 	     // jet[j].phip=[];
 	     // jet[j].etap=[];
@@ -173,11 +167,12 @@ int numentries = pt->size();
 	    jet[i].etap=combeta;
 	    jet[i].phip=TMath::ASin(combpx/combpt);
 
-	 
+	 //delete the jth particle
+	 jet.erase(j);
 	  }//for j 
 
 }//fori
-
+}//for while
 //create histograms
 
 }//fornbytes 
