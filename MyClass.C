@@ -97,17 +97,17 @@ int numentries = pt->size();
      particle.ptp = (*pt)[k];
      particle.massp = (*mass)[k];
      jet.push_back(particle);
-     std::cout<<"We added"<<jet(k);
+     //std::cout<<"We added"<<jet(k);
    }
    
-/*
+
 
    int stoploop =numentries;
    
    while (!jet.empty()){//only evaluate while our list is nonempy??  
    for (Long64_t i=0;i<stoploop;i++){
      for (Long64_t j=i+1; j<stoploop;j++){//start j=i accounts for all particles??
-             phii= jet[i].phip;   //ERROR: need to change to iterators??
+             /*phii= jet[i].phip;   //ERROR: need to change to iterators??
 	     phij= jet[j].phip;
 	     etai= jet[i].etap;
 	     etaj= jet[j].etap;
@@ -170,15 +170,18 @@ int numentries = pt->size();
 	 //delete the jth particle
 	       jet.erase(j);
 	     }
+	     */
+	     std::cout<<"Hello";
 	  }//for j 
        }//fori
 }//for while
 //create histograms
-jetp->Draw();
+/*jetp->Draw();
 jetphip->Draw();
 jetetap->Draw();
 jetmassp->Draw();
 */
+
 
 std::cout<<"Hi";
 }//fornbytes 
