@@ -83,13 +83,7 @@ void MyClass::Loop()
       if (ientry < 0) break;
       nb = fChain->GetEntry(jentry);   nbytes += nb;
       // if (Cut(ientry) < 0) continue;
-/*
-   //TBranch *jetp = tree->Branch("pt",&pt,"pt/F");   //tree not declared in this scope
-   //tree->SetBranchAddress("jetptp",&pt);
-   //tree->SetBranchAddress("jetetap",&eta);
-   //tree->SetBranchAddress("jetphip",&eta);
-   //tree->SetBranchAddress("jetmassp",&eta);
-   
+
 
    //IDEA?:Need new tree so that values can be deleted/altered and clone the data into these friends??
 
@@ -104,7 +98,8 @@ int numentries = pt->size();
      particle.massp = (*mass)[k];
      jet.push_back(particle);
    }
-
+   
+/*
 
    int stoploop =numentries;
    
