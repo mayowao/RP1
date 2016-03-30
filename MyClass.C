@@ -107,7 +107,7 @@ int numentries = pt->size();
    while (!jet.empty()){//only evaluate while our list is nonempy??  
    for (Long64_t i=0;i<stoploop;i++){
      for (Long64_t j=i+1; j<stoploop;j++){//start j=i accounts for all particles??
-             /*phii= jet[i].phip;   //ERROR: need to change to iterators??
+             phii= jet[i].phip;   //ERROR: need to change to iterators??
 	     phij= jet[j].phip;
 	     etai= jet[i].etap;
 	     etaj= jet[j].etap;
@@ -115,7 +115,7 @@ int numentries = pt->size();
 	     ptj= jet[j].ptp;
 	     massi=jet[i].massp;
 	     massj=jet[j].massp;
-
+/*
 	     R=TMath::Sqrt((phii-phij)^2+(etai-etaj)^2);
 	    
 	     dij=TMath::(R^2)*min(pti^(-2),ptj^(-2));
