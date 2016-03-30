@@ -147,10 +147,11 @@ int numentries = pt->size();
 	        jet.erase(jet.begin()+i);
     	    
              }
-/*
+
       //if the min is distance between particles
 	     if  (mind==dij){   //ERROR: from TMath, and Double_t(line 163) sol'n need c++ math???
 	    //make the ith particle the combined particle
+	      //calculate values for the ith entries
 	       thetai=2*(atan(exp(-etai)));   //ERROR: expected unqualified id before num constnt, expected ;??
 	       thetaj=2*(atan(exp(-etaj)));
 	       ppi=pti/sin(thetai);   //ERROR : pti not a member of TMath
@@ -162,15 +163,26 @@ int numentries = pt->size();
 	       combpt=sqrt(pow(combpx,2)+pow(combpy,2));
 	       combtheta=asin(combpt/combp);
 	       combeta=-log(tan(combtheta/2));
+	       
+	       //add to the ith spot
+	       particle.number = i;
+               particle.phip = asin(combpx/combpt);   
+               particle.etap = combeta;
+               particle.ptp = combpt;
+               particle.massp = (*mass)[k];
+               jet.insert(particle);
+               jet.erase(jet.begin()+(i+1));
+	       
+	       /*
 	       jet[i].ptp=combpt;
 	       jet[i].massp=massi+massj;
 	       jet[i].etap=combeta;
 	       jet[i].phip=asin(combpx/combpt);
-
+               */
 	 //delete the jth particle
 	       jet.erase(jet.begin()+j);
 	     }
-	     */
+/*	     */
 	     std::cout<<"Hello";
 	  }//for j 
        }//fori
