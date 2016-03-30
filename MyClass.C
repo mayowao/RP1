@@ -102,8 +102,6 @@ int numentries = pt->size();
      std::cout<<"We added"<<jet[k].phip;
    }
    
-
-
    int stoploop =numentries;
    
    while (!jet.empty()){//only evaluate while our list is nonempy??  
@@ -124,10 +122,10 @@ int numentries = pt->size();
 	     diB=pow(pti,-2);
 	     djB=pow(ptj,-2);
              mind=min(min(dij,diB),djB);
-/*
+
              //if the min is i with beam:
 	     if  (mind==diB){
-	        jetp->Fill(i));
+	        jetp->Fill(i);
 	        jetphip->Fill(jet[i].phip);
 	        jetptp->Fill(jet[i].ptp);
                 jetetap->Fill(jet[i].etap);
@@ -139,7 +137,7 @@ int numentries = pt->size();
 
       //if the min is j with beam
              if  (mind==djB){
-	        jetp->Fill(j));
+	        jetp->Fill(j);
                 jetphip->Fill(jet[j].phip);
                 jetptp->Fill(jet[j].ptp);
                 jetetap->Fill(jet[j].etap);
@@ -172,7 +170,7 @@ int numentries = pt->size();
 	 //delete the jth particle
 	       jet.erase(jet.begin()+j);
 	     }
-	     */
+	     /**/
 	     //std::cout<<"Hello";
 	  }//for j 
        }//fori
