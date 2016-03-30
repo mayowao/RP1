@@ -15,7 +15,7 @@
 #include <map>
 #include <vector>
 #include <iterator>
-/*
+
 using std::vector;
 
 //Create struct
@@ -27,10 +27,10 @@ using std::vector;
      float massp; 
    }
    
-   evaluatejet_particles; 
+   //evaluatejet_particles; 
 
 //Add lists
-    list<evaluatejet> jet;
+    vector<evaluatejet> jet;
     
 
 //variables being used
@@ -38,7 +38,7 @@ using std::vector;
    Double_t R,dij,diB,djB,mind, combp, combpt, thetai, thetaj;
    Double_t combeta,combtheta,combpx,combpy,combpz,ppi,ppj;
 
-*/
+
 
 
 void MyClass::Loop()
