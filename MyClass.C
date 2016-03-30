@@ -80,7 +80,7 @@ void MyClass::Loop()
    //tree->SetBranchAddress("jetphip",&eta);
    //tree->SetBranchAddress("jetmassp",&eta);
    TH1F *jetphip = new TH1F("jetphip","phi",-4,0.,4);
-   TH1F *jeteta = new TH1F("jeteta","eta", -4,0.,4);
+   TH1F *jetetap = new TH1F("jeteta","eta", -4,0.,4);
    TH1F *jetptp = new TH1F("jetptp","pt",0,0.,500);
    TH1F *jetp = new TH1F("jetp","p",0,0,500);
    TH1F *jetmassp = new TH1F("jetmassp","mass",0,0.,500);
@@ -150,11 +150,11 @@ int numentries = pt->size();
    }
 
       //if the min is distance between particles
-	  if  (mind==dij){
+	  if  (mind==dij){   //ERROR: from TMath, and Double_t(line 163) sol'n need c++ math???
 	    //make the ith particle the combined particle
-	    thetai=TMath::2*(ATan(E(-etai)));
+	    thetai=TMath::2*(ATan(E(-etai)));   //ERROR: expected unqualified id before num constnt, expected ;??
 	    thetaj=TMath::2*(ATan(E(-etaj)));
-	    ppi=TMath::pti/Sin(thetai);
+	    ppi=TMath::pti/Sin(thetai);   //ERROR : pti not a member of TMath
 	    ppj=TMath::ptj/Sin(thetaj);
 	    combp=TMath::Sqrt((pti*Cos(phii)+ptj*Cos(phij))^2+(pti*Sin(phii)+ptj*Sin(phij))^2+(ppi*Cos(thetai)+ppj*Cos(thetaj))^2);
 	    combpx=TMath::ppi*Sin(thetai)*Cos(phii)+ptj*Sin(thetaj)*Cos(phij);
@@ -170,9 +170,9 @@ int numentries = pt->size();
 
 	 //delete the jth particle
 	 jet.erase(j);
+	  }
 	  }//for j 
-
-}//fori
+     }//fori
 }//for while
 //create histograms
 jetp->Draw();
