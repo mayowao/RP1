@@ -15,8 +15,8 @@
 #include <map>
 #include <vector>
 #include <iterator>
-
-/*using std::list;
+/*
+using std::vector;
 
 //Create struct
    struct evaluatejet {
@@ -25,7 +25,9 @@
      float etap;
      float ptp;
      float massp; 
-   }particles; 
+   }
+   
+   evaluatejet_particles; 
 
 //Add lists
     list<evaluatejet> jet;
@@ -36,8 +38,8 @@
    Double_t R,dij,diB,djB,mind, combp, combpt, thetai, thetaj;
    Double_t combeta,combtheta,combpx,combpy,combpz,ppi,ppj;
 
-
 */
+
 
 void MyClass::Loop()
 {
@@ -182,7 +184,7 @@ jetetap->Draw();
 jetmassp->Draw();
 */
 
-std::cout<<Hi>>std::outl;
+std::cout<<"Hi";
 }//fornbytes 
 }//void
 
