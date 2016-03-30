@@ -16,7 +16,7 @@
 #include <vector>
 #include <iterator>
 
-using std::list;
+/*using std::list;
 
 //Create struct
    struct evaluatejet {
@@ -37,6 +37,7 @@ using std::list;
    Double_t combeta,combtheta,combpx,combpy,combpz,ppi,ppj;
 
 
+*/
 
 void MyClass::Loop()
 {
@@ -180,6 +181,7 @@ jetphip->Draw();
 jetetap->Draw();
 jetmassp->Draw();
 */
+
 std::cout<<Hi>>std::outl;
 }//fornbytes 
 }//void
