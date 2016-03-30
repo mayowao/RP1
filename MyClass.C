@@ -134,7 +134,7 @@ int numentries = pt->size();
      	     //Get rid of particle from list
                 jet.erase(jet.begin()+i); 
              }
-
+/*
       //if the min is j with beam
              if  (mind==djB){
 	        jetp->Fill(j);
@@ -170,8 +170,8 @@ int numentries = pt->size();
 	 //delete the jth particle
 	       jet.erase(jet.begin()+j);
 	     }
-	     /**/
-	     //std::cout<<"Hello";
+	     */
+	     std::cout<<"Hello";
 	  }//for j 
        }//fori
 }//for while
