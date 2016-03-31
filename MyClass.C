@@ -169,8 +169,8 @@ int numentries = pt->size();
                particle.phip = asin(combpx/combpt);   
                particle.etap = combeta;
                particle.ptp = combpt;
-               particle.massp = (*mass)[k];
-               jet.insert(particle);
+               particle.massp = massi+massj;
+               jet.insert(jet.begin()+i,particle);
                jet.erase(jet.begin()+(i+1));
 	       
 	       /*
