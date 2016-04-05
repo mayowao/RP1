@@ -116,8 +116,8 @@ int numentries = pt->size();
 	     massi=jet[i].massp;
 	     massj=jet[j].massp;
 	     
-	     std::cout<<"pti"<<pti;
-	     std::cout<<"ptj"<<ptj;
+	     std::cout<<"pti="<<pti;
+	     std::cout<<"ptj="<<ptj;
 
 	     R=sqrt(pow((phii-phij),2)+pow((etai-etaj),2));
 	    
