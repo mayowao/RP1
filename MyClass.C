@@ -144,10 +144,10 @@ int numentries = pt->size();
 	        jetmassp->Fill(jet[j].massp);    
 
               //Get rid of particle from list
-	        jet.erase(jet.begin()+i);
+	        jet.erase(jet.begin()+j);
     	    
              }
-
+/*
       //if the min is distance between particles
 	     if  (mind==dij){   //ERROR: from TMath, and Double_t(line 163) sol'n need c++ math???
 	    //make the ith particle the combined particle
@@ -175,16 +175,16 @@ int numentries = pt->size();
                jet.insert(jet.begin()+i,particle);
                jet.erase(jet.begin()+(i+1));
 	       
-	       /*
-	       jet[i].ptp=combpt;
-	       jet[i].massp=massi+massj;
-	       jet[i].etap=combeta;
-	       jet[i].phip=asin(combpx/combpt);
-               */
+	       
+	       //jet[i].ptp=combpt;
+	       //jet[i].massp=massi+massj;
+	       //jet[i].etap=combeta;
+	       //jet[i].phip=asin(combpx/combpt);
+               
 	 //delete the jth particle
 	       jet.erase(jet.begin()+j);
 	     } //if combined particle
-/*	     */
+	     */ 
 	     std::cout<<"Hello";
 	  }//for j 
        }//fori
