@@ -115,6 +115,9 @@ int numentries = pt->size();
 	     ptj= jet[j].ptp;
 	     massi=jet[i].massp;
 	     massj=jet[j].massp;
+	     
+	     std::cout<<"pti"<<pti;
+	     std::cout<<"ptj"<<ptj;
 
 	     R=sqrt(pow((phii-phij),2)+pow((etai-etaj),2));
 	    
@@ -185,7 +188,7 @@ int numentries = pt->size();
 	       jet.erase(jet.begin()+j);
 	     } //if combined particle
 	     */ 
-	     std::cout<<"Hello";
+	     //std::cout<<"Hello";
 	  }//for j 
        }//fori
 }//for while
