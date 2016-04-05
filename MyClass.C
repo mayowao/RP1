@@ -152,9 +152,9 @@ int numentries = pt->size();
 	     if  (mind==dij){   //ERROR: from TMath, and Double_t(line 163) sol'n need c++ math???
 	    //make the ith particle the combined particle
 	      //calculate values for the ith entries
-	       thetai=2*(atan(exp(-etai)));   //ERROR: expected unqualified id before num constnt, expected ;??
+	       thetai=2*(atan(exp(-etai)));   
 	       thetaj=2*(atan(exp(-etaj)));
-	       ppi=pti/sin(thetai);   //ERROR : pti not a member of TMath
+	       ppi=pti/sin(thetai);   
 	       ppj=ptj/sin(thetaj);
 	       combp=sqrt(pow((pti*cos(phii)+ptj*cos(phij)),2)+pow((pti*sin(phii)+ptj*sin(phij)),2)+pow((ppi*cos(thetai)+ppj*cos(thetaj)),2))*(dij/R);
 	       combpx=ppi*sin(thetai)*cos(phii)+ptj*sin(thetaj)*cos(phij);
@@ -170,6 +170,8 @@ int numentries = pt->size();
                particle.etap = combeta;
                particle.ptp = combpt;
                particle.massp = massi+massj;
+               std::cout<<combpt<<" ";
+               //std::cout<<"i is"<<particle.number<<" ";
                jet.insert(jet.begin()+i,particle);
                jet.erase(jet.begin()+(i+1));
 	       
@@ -183,7 +185,7 @@ int numentries = pt->size();
 	       jet.erase(jet.begin()+j);
 	     }
 /*	     */
-	     std::cout<<"Hello";
+	     //std::cout<<"Hello";
 	  }//for j 
        }//fori
 }//for while
