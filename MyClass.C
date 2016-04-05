@@ -37,8 +37,8 @@ using std::vector;
 
 //variables being used
    float phii,phij,etai,etaj,pti,ptj,massi,massj;
-   Double_t R,dij,diB,djB,mind, combp, combpt, thetai, thetaj;
-   Double_t combeta,combtheta,combpx,combpy,combpz,ppi,ppj;
+   float R,dij,diB,djB,mind, combp, combpt, thetai, thetaj;
+   float combeta,combtheta,combpx,combpy,combpz,ppi,ppj;
 
 
 
