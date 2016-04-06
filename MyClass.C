@@ -98,7 +98,8 @@ int numentries = pt->size();
      particle.etap = (*eta)[k];
      particle.ptp = (*pt)[k];
      particle.massp = (*mass)[k];
-     std::cout<<"We added "<<jet.phip(k);
+     jet.push_back(particle);
+     std::cout<<"We added "<<jet[k].phip;
    }
    
    
