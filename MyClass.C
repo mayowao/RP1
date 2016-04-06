@@ -175,16 +175,11 @@ int numentries = pt->size();
                particle.massp = massi+massj;
                //std::cout<<combpt;
                std::cout<<"i is"<<particle.number<<" ";
-               jet.insert(jet.begin()+i, evaluatejet& particle);
+               //jet.insert(jet.begin()+i, evaluatejet& particle);
                jet.erase(jet.begin()+(i+1));
 	       
 	       std::cout<<"We changed"<<jet[i].number;
 	       
-	       //jet[i].ptp=combpt;
-	       //jet[i].massp=massi+massj;
-	       //jet[i].etap=combeta;
-	       //jet[i].phip=asin(combpx/combpt);
-               
 	       //delete the jth particle
 	       jet.erase(jet.begin()+j);
 	     } //if combined particle
