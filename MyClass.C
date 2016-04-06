@@ -116,9 +116,6 @@ int numentries = pt->size();
 	     massi=jet[i].massp;
 	     massj=jet[j].massp;
 	     
-	     std::cout<<"pti="<<pti;
-	     std::cout<<"ptj="<<ptj;
-
 	     R=sqrt(pow((phii-phij),2)+pow((etai-etaj),2));
 	    
 	     dij=(pow(R,2))*min(pow(pti,-2),pow(ptj,-2));
@@ -150,7 +147,7 @@ int numentries = pt->size();
 	        jet.erase(jet.begin()+j);
     	    
              }
-/*
+
       //if the min is distance between particles
 	     if  (mind==dij){   //ERROR: from TMath, and Double_t(line 163) sol'n need c++ math???
 	    //make the ith particle the combined particle
@@ -167,6 +164,9 @@ int numentries = pt->size();
 	       combtheta=asin(combpt/combp);
 	       combeta=-log(tan(combtheta/2));
 	       
+	       std::cout<<"thetai="<<thetai;
+	       std::cout<<"thetaj="<<thetaj;
+
 	       //add to the ith spot
 	       particle.number = i;
                particle.phip = asin(combpx/combpt);   
@@ -174,20 +174,21 @@ int numentries = pt->size();
                particle.ptp = combpt;
                particle.massp = massi+massj;
                //std::cout<<combpt;
-               //std::cout<<"i is"<<particle.number<<" ";
-               jet.insert(jet.begin()+i,particle);
+               std::cout<<"i is"<<particle.number<<" ";
+               jet.insert(jet.begin()+i, evaluatejet& particle);
                jet.erase(jet.begin()+(i+1));
 	       
+	       std::cout<<"We changed"<<jet[i].number;
 	       
 	       //jet[i].ptp=combpt;
 	       //jet[i].massp=massi+massj;
 	       //jet[i].etap=combeta;
 	       //jet[i].phip=asin(combpx/combpt);
                
-	 //delete the jth particle
+	       //delete the jth particle
 	       jet.erase(jet.begin()+j);
 	     } //if combined particle
-	     */ 
+	    /* */ 
 	     //std::cout<<"Hello";
 	  }//for j 
        }//fori
