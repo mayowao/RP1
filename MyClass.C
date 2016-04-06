@@ -98,14 +98,13 @@ int numentries = pt->size();
      particle.etap = (*eta)[k];
      particle.ptp = (*pt)[k];
      particle.massp = (*mass)[k];
-     std::cout<<"We added"<<jet[k].phip;
+     std::cout<<"We added "<<jet[k].phip;
    }
    
-   int stoploop =numentries;
    
    while (!jet.empty()){//only evaluate while our list is nonempy??  
-   for (Long64_t i=0;i<stoploop;i++){
-     for (Long64_t j=i+1; j<stoploop;j++){//start j=i accounts for all particles??
+   for (Long64_t i=0;i<numentries;i++){
+     for (Long64_t j=i+1; j<numentries;j++){//start j=i accounts for all particles??
              phii= jet[i].phip;   //ERROR: need to change to iterators??
 	     phij= jet[j].phip;
 	     etai= jet[i].etap;
