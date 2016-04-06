@@ -98,7 +98,6 @@ int numentries = pt->size();
      particle.etap = (*eta)[k];
      particle.ptp = (*pt)[k];
      particle.massp = (*mass)[k];
-     jet.push_back(particle);
      std::cout<<"We added"<<jet[k].phip;
    }
    
@@ -164,8 +163,8 @@ int numentries = pt->size();
 	       combtheta=asin(combpt/combp);
 	       combeta=-log(tan(combtheta/2));
 	       
-	       std::cout<<"thetai="<<thetai;
-	       std::cout<<"thetaj="<<thetaj;
+	       //std::cout<<"thetai="<<thetai;
+	       //std::cout<<"thetaj="<<thetaj;
 
 	       //add to the ith spot
 	       particle.number = i;
@@ -174,11 +173,12 @@ int numentries = pt->size();
                particle.ptp = combpt;
                particle.massp = massi+massj;
                //std::cout<<combpt;
-               std::cout<<"i is"<<particle.number<<" ";
+               std::cout<<" i is "<<particle.number<<" ";
                //jet.insert(jet.begin()+i, evaluatejet& particle);
-               jet.erase(jet.begin()+(i+1));
+               jet.push_back(particle);
+               jet.erase(jet.begin()+i);
 	       
-	       std::cout<<"We changed"<<jet[i].number;
+	       std::cout<<"We changed "<<jet[i].number;
 	       
 	       //delete the jth particle
 	       jet.erase(jet.begin()+j);
