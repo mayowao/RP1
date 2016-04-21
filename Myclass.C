@@ -3,6 +3,7 @@
 #include <TH2.h>
 #include <TStyle.h>
 #include <TCanvas.h>
+#include <TGraph.h>
 #include <math.h>
 #include <string>
 #include <strstream>
@@ -13,11 +14,15 @@
 #include <list>
 #include <vector>
 #include <iterator>
+//#include <array>
 
 //Denotes namespace
 using std::vector;
 using std::cout;
 using std::list;
+using std::max;
+//using std::abs;
+//using std::array;
 
 //Create index variables for vector                                                                  
 unsigned int it, jt; 
@@ -87,7 +92,15 @@ vector <AllParticles> OriginalParticles;
 //List fo Find Highest pT Jet
 list <float> SortingHEJets;
 
-//Very Important Method
+//To keep tack of values over all events
+int beforeloops = 0;
+int scattern = 27102;
+float jetptarray[27102] = {};
+float energyarray[27102] = {};
+float jetwphiarray[27102] = {};
+
+
+//The Main Method
 void Myclass::Loop()
 {
 
@@ -125,7 +138,7 @@ void Myclass::Loop()
   //Set up Histograms
   
    //pT of jets 
-  TH1F *histo3 = new TH1F("histo3", "pT Spectrum Jets over 50 GeV", 100, 0, 2500);
+  TH1F *histo3 = new TH1F("histo3", "pT Spectrum Jets over 50 GeV", 100, 0, 250);
   histo3 -> SetMarkerStyle(4);
  
   //Number of jets in an event
@@ -147,6 +160,10 @@ void Myclass::Loop()
   //Phi plot
   TH1F *histo6 = new TH1F("histo5", "Phi Plot", 100, -3.5, 3.5);
   histo6 -> SetMarkerStyle(4);
+
+  //Scatter Plots
+  //TGraph *g = new TGraph(27102,jetwphiarray,energyarray);
+  //TH1F *scatter1 = new TH1F("scatter1", "Energy vs. Widest Phi", 100, 1, 3000);
 
   //Set Cut for pT HEJets
   float cutpT = 50;
@@ -198,8 +215,8 @@ void Myclass::Loop()
           float calcp = sqrt(pow(calcpx,2)+pow(calcpy,2)+pow(calcpz,2));
           item.energy = sqrt(pow(calcp,2)+pow((*mass)[wh],2));
           item.widestphi = 0;
-          item.wphifirst = wh;
-          item.wphisecond = wh;
+	  //          item.wphifirst = wh;
+          //item.wphisecond = wh;
           Particles.push_back( item );
           OriginalParticles.push_back( item );
         }
@@ -259,6 +276,7 @@ void Myclass::Loop()
 	  histo2 -> Fill( Jets.back().pt );
           histo5 -> Fill( Jets.back().eta );
           histo6 -> Fill( Jets.back().phi );
+	  //std::cout<< "added to jet = " << jentry << std::endl;
 
 	}
 
@@ -287,10 +305,57 @@ void Myclass::Loop()
 	  newmass = sqrt(pow(newenergy,2)-pow(newcalcp,2)); // Use energy to calculate new mass
 	  
           //Firgure out the new widestphi
-          //int wphifindex = Particles[
-          //float phibetweenf = max(OriginalParticles[lastphii1].phi-OriginalParticles[lastphij1].phi,OriginalParticles[l;
-	  float phibetween = 0;
-          float newwidestphi = max(Particles[minindex_i].widestphi,max(Particles[minindex_j].widestphi,phibetween));
+	  float newwphi;
+	  int wphif,wphis;
+          int fcindex = Particles[minindex_i].wphifirst;
+          int scindex = Particles[minindex_i].wphisecond;
+          int tcindex = Particles[minindex_j].wphifirst;
+          int frcindex = Particles[minindex_j].wphisecond;
+
+          float fcscphi = abs(OriginalParticles[fcindex].phi-OriginalParticles[scindex].phi);
+          float fctcphi = abs(OriginalParticles[fcindex].phi-OriginalParticles[tcindex].phi);
+          float fcfrcphi = abs(OriginalParticles[fcindex].phi-OriginalParticles[frcindex].phi);
+          float sctcphi = abs(OriginalParticles[scindex].phi-OriginalParticles[tcindex].phi);
+          float scfrcphi = abs(OriginalParticles[scindex].phi-OriginalParticles[frcindex].phi);
+          float tcfrcphi = abs(OriginalParticles[tcindex].phi-OriginalParticles[frcindex].phi);
+
+          float newwphif = max(fcscphi,max(fctcphi,max(fcfrcphi,max(sctcphi,max(scfrcphi,tcfrcphi)))));
+
+          if (newwphif==fcscphi){
+	    newwphi = fcscphi;
+	    wphif = fcindex;
+	    wphis = scindex;
+	  }
+
+	  if (newwphif==fctcphi){
+	    newwphi = newphi;
+	    wphif = fcindex;
+	    wphis = tcindex;
+	  }
+
+	  if (newwphif==fcfrcphi){
+	    newwphi = newphi;
+	    wphif = fcindex;
+	    wphis = frcindex; 
+	  }
+
+	  if (newwphif==sctcphi){
+	    newwphi = newphi;
+	    wphif = scindex;
+	    wphis = tcindex;
+	  }
+
+          if (newwphif==scfrcphi){
+	    newwphi = newphi;
+	    wphif = scindex;
+	    wphis = frcindex;
+	  }
+
+	  if (newwphif==tcfrcphi){
+	    newwphi = newphi;
+	    wphif = tcindex;
+	    wphis = frcindex;
+	  }
 
 	  //Build New Struct with all new values                                          
 	  item.pt = newpT;
@@ -298,8 +363,10 @@ void Myclass::Loop()
 	  item.phi = newphi;
           item.mass = newmass;
 	  item.energy = newenergy;
-	  item.widestphi = newwidestphi;
-	  
+	  item.widestphi = newwphi;
+	  item.wphifirst = wphif;
+          item.wphisecond = wphis;
+
 	  //Remove the Particles
 	  //Check to see which one is bigger before removing so as so not mess up indeces
 	  if ( minindex_j < minindex_i )
@@ -333,12 +400,38 @@ void Myclass::Loop()
       histo1 -> Fill( Jets.size() );
       //histo5 -> Fill ( Jets.eta() );
 
+      //make arrays for the scatter plots (before clearing them)
+      int jetsadded = beforeloops+Jets.size();
+
+      for(int m=beforeloops; m<jetsadded; m++){
+	jetptarray[m]=Jets[m].pt;
+	jetwphiarray[m]=Jets[m].widestphi;
+	energyarray[m]=Jets[m].energy;
+      }
+
+      //concatenate two arrays along the way instead?
+      /*float * result = new float[jetsadded];      
+      copy(jetptarray, jetptarray + beforeloops, result);
+      copy(jetptadded, jetptadded + Jets.size(), result + beforeloops);
+
+      float jetptarray[jetsadded]= result;
+      */
+      beforeloops=beforeloops+Jets.size();
+      std::cout<< "energyarray = " << energyarray[beforeloops-1] << std::endl;
+      std::cout<< "jetwphiarray = " << jetwphiarray[beforeloops-1] << std::endl;
+      std::cout<< "m = " << jetsadded << std::endl;
+
       //Clear Jets vectors for next event
       SortingHEJets.clear();
       HighEnergyJets.clear();
       Jets.clear();
     }//Exit event (jentry) for loop
   
+  //Scatter Plots, (for variables used see lines ~403-422)
+  TGraph *g = new TGraph(27102,jetwphiarray,energyarray); //widest phi is calculated around lines 307-369
+
+  TGraph *h = new TGraph(27102,jetptarray,energyarray);
+
   //Histogram stuff
   histo3 -> Draw("");
 
@@ -348,8 +441,22 @@ void Myclass::Loop()
   histo2 -> Draw("");
  
   c1 -> cd(3);
-  histo6 -> Draw("");
+  g->Draw("AC*");
+  g->GetYaxis()->SetRangeUser(-4,4);
+  g->Draw("AC*");
+  g->GetXaxis()->SetRangeUser(0,50); 
+  g->Draw("AC*");
+  c1->Update();
+  //scatter1 -> Draw("jetwphiarray:energyarray");
+  //histo6 -> Draw(""); //phi plot
+
   c1 -> cd(4);
-  histo5 -> Draw("");
+  h->Draw("AC*");
+  h->GetYaxis()->SetRangeUser(-100,100);
+  h->Draw("AC*");
+  h->GetXaxis()->SetRangeUser(0,50);
+  h->Draw("AC*");
+  c1->Update();
+  //histo5 -> Draw(""); //eta plot
   c1 -> SaveAs("prettypic.gif");
 }//Void Loop()
